@@ -1,0 +1,20 @@
+(define meter2
+  (lambda ()
+    (let ((amount 0))
+      (lambda (m)
+        (cond ((equal? m 'deposit)
+               (set! amount (+ amount .25)))
+              ((equal? m 'total) amount)
+              ((equal? m 'collect)
+               (let ((amt amount))
+                 (set! amount 0)
+                 amt))
+              (else 'Eh?))))))
+
+(define q1 (meter2))
+(define q2 (meter2))
+
+(q1 'deposit)
+(q1 'total)
+(q1 'deposit)
+(q1 'total)
